@@ -6,12 +6,17 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "terminal.integrated.defaultProfile.linux": "bash"
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.formatOnSave": true,
+                "python.lintng.flake8Enabled": true,
+                "python.formatting.provider": "black"
             },
             "extensions": [
-                "ms-python.python"
+                "ms-python.python",
+                "ms-python.flake8",
+                "ms-python.black-formatter"
             ]
         }
     },
-    "postCreateCommand": "pip install --upgrade pip"
+    "postCreateCommand": "pip install flake8 black"
 }

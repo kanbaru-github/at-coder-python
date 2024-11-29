@@ -29,3 +29,18 @@
 ### 使用が適している場合:
 - Pythonの標準ライブラリや外部ライブラリを多用するコード。
 - 速度よりも安定性を優先したい場合。
+
+## 静的解析
+- Flake8
+
+## コードフォーマット
+- Black
+
+
+## memo
+### バージョン確認
+```bash
+pypy3 --version
+```
+
+[Python 3.10.12 reference(ja)](https://docs.python.org/ja/3.10/reference/index.html)
