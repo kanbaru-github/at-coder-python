@@ -1,6 +1,23 @@
-n = input()
+N = int(input())
+S = input()
 
-if n.count("1") == 1 and n.count("2") == 2 and n.count("3") == 3:
-    print("Yes")
-else:
+
+if N % 2 == 0:
     print("No")
+    exit()
+
+for i in range(((N + 1) // 2) - 1):
+    if S[i] != "1":
+        print("No")
+        exit()
+
+if S[((N + 1) // 2) - 1] != "/":
+    print("No")
+    exit()
+
+for i in range((N + 1) // 2, N):
+    if S[i] != "2":
+        print("No")
+        exit()
+
+print("Yes")
