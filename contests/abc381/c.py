@@ -1,19 +1,18 @@
-N, K = map(int, input().split())
+N = int(input())
 S = input()
+ans = 0
 
-idx = [0] + [i for i in range(1, N) if S[i - 1] != S[i]] + [N]
-splited_S = [S[idx[i]: idx[i + 1]] for i in range(len(idx) - 1)]
+for i in range(N):
+    if S[i] == "/":
+        cnt = 1
+        left = i - 1
+        right = i + 1
 
-if S[0] == "0":
-    kth_1_idx = 2 * K - 1
-else:
-    kth_1_idx = 2 * K - 2
+        while left >= 0 and right < N and S[left] == "1" and S[right] == "2":
+            cnt += 2
+            left -= 1
+            right += 1
 
-splited_S[kth_1_idx - 1], splited_S[kth_1_idx] = (
-    splited_S[kth_1_idx],
-    splited_S[kth_1_idx - 1],
-)
+        ans = max(ans, cnt)
 
-T = "".join(splited_S)
-
-print(T)
+print(ans)
