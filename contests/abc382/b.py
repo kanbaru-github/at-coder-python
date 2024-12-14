@@ -12,4 +12,4 @@ for i in range(n):
         break
 
 s.reverse()
-print(''.join(s))
+print("".join(s))
