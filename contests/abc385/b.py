@@ -1,12 +1,30 @@
-n, r = map(int, input().split())
+h, w, x, y = map(int, input().split())
 
-for i in range(int(n)):
-    d, a = map(int, input().split())
-    if d == 1:
-        if 1600 <= r <= 2799:
-            r += a
-    else:
-        if 1200 <= r <= 2399:
-            r += a
+x -= 1
+y -= 1
 
-print(r)
+s = [list(input()) for _ in range(h)]
+t = input()
+
+ans = 0
+for i in range(len(t)):
+    ni, nj = x, y
+    if t[i] == "U":
+        ni -= 1
+    if t[i] == "D":
+        ni += 1
+    if t[i] == "L":
+        nj -= 1
+    if t[i] == "R":
+        nj += 1
+
+    if s[ni][nj] == "#":
+        continue
+
+    x, y = ni, nj
+
+    if s[x][y] == "@":
+        s[x][y] = "."
+        ans += 1
+
+print(x + 1, y + 1, ans)

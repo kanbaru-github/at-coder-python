@@ -1,28 +1,23 @@
-# 入力を受け取る（5問の配点）
-n = 5
-a = list(map(int, input().split()))
+n = int(input())
+h = list(map(int, input().split()))
 
-# 参加者の得点とその名前を格納するリスト
-ranking = []
+ans = 0
+for w in range(1, n + 1):  # wは「ビル同士の間隔」を表す
+    for si in range(w):  # siは「最初に選ぶビルの位置」を表す
+        # 間隔wで、位置siから始めてビルを選んでいく
+        a = []
+        for i in range(si, n, w):
+            a.append(h[i])  # 選んだビルの高さを記録
 
-# すべての問題の組み合わせを試す（1～31の2進数表現を利用）
-for s in range(1, 32):  # 1から31まで
-    name = ""
-    score = 0
+        # 選んだビルの中で、同じ高さが何棟連続しているかを数える
+        val = -1  # 現在注目しているビルの高さ
+        length = 0  # 同じ高さのビルが連続している数
+        for x in a:
+            if val == x:  # 前のビルと同じ高さの場合
+                length += 1
+            else:  # 異なる高さのビルが出てきた場合
+                val = x
+                length = 1
+            ans = max(ans, length)  # 最大値を更新
 
-    # 各桁（各問題）について判定
-    for i in range(n):
-        # その問題を解いているかビット演算で判定
-        if (s >> i) & 1:
-            score += a[i]  # 点数を加算
-            name += chr(ord("A") + i)  # 問題名（A,B,C,D,E）を追加
-
-    # 得点の降順でソートするため、scoreにマイナスをつける
-    ranking.append((-score, name))
-
-# スコアの降順（-scoreの昇順）、名前の辞書順でソート
-ranking.sort()
-
-# 結果を出力
-for score, name in ranking:
-    print(name)
+print(ans)
